@@ -1,0 +1,131 @@
+.cart-container{
+    display: flex;
+    gap: 2rem;
+}
+.products-table{
+    margin-top: 2rem;
+    margin-left: 8rem;
+    width: 55%;
+    
+    border: 1px solid #e8e8e8;
+}
+.products-table .product{
+    width: 100%;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+}
+.product-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+}
+.product-info img{
+    width: 5rem;
+    height: 5rem;
+}
+.quantity-controll{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 15%;
+}
+.link{
+    text-decoration: underline ;
+    color: #4242f1;
+    font-weight: bold;
+}
+i{
+    cursor: pointer;
+}
+.payment-info{
+     margin-top: 2rem;
+    border: 2px solid #e8e8e8;
+    width: 26%;
+    height: 11rem;
+    position: relative;
+}
+.payment-info h1{
+    font-weight: bold;
+    padding: 2rem 1rem;
+    font-size:x-large ;
+}
+.payment-info button{
+     background-color: #ff9900;
+     color: white;
+     width: 10rem;
+     height: 3rem;
+     margin-top: 1rem;
+     border: 1px solid black;
+     position: absolute;
+     transform: translate(50%);
+     -webkit-transform: translate(50%);
+     -moz-transform: translate(50%);
+     -ms-transform: translate(50%);
+     -o-transform: translate(50%);
+     color: black;
+     font-weight: bold;
+    
+}
+.payment-info button:hover{
+    opacity: 0.9;
+    background-color: #4242f1;
+    color: white;
+}
+@media screen and (max-width: 768px) {
+  .cart-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.products-table{
+    margin-top: 1rem;
+    margin-left: 0rem;
+    width: 100%;
+    border: 1px solid #e8e8e8;
+}
+.products-table .product{
+    width: 100%;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+}
+.product-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+}
+
+.quantity-controll{
+    width: 25%;
+}
+
+.payment-info{
+     margin-top: 0rem;
+    border: 1px solid #e8e8e8;
+    width: 100%;
+    height: 11rem;
+    position: relative;
+    text-align: center;
+}
+
+.payment-info button{
+     background-color: #ff9900;
+     color: white;
+     width: 10rem;
+     height: 3rem;
+     margin-top: 1rem;
+     border: 1px solid black;
+     position: relative;
+     transform: translate(0%);
+     -webkit-transform: translate(0%);
+     -moz-transform: translate(0%);
+     -ms-transform: translate(0%);
+     -o-transform: translate(0%);
+     color: black;
+     font-weight: bold;
+}
+}
+
