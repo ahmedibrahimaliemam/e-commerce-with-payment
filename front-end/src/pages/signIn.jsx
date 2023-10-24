@@ -27,7 +27,7 @@ const SignIn = () => {
           icon: "success",
           title: "login successfully",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
         });
         console.log(res.data);
         dispatch(addUser(res.data));

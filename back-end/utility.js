@@ -15,4 +15,21 @@ const genToken = (found) => {
   );
   return encoded;
 };
-module.exports = { genToken };
+const isAuthorized = (req, res, next) => {
+  const { authorization } = req.headers;
+  if (authorization) {
+    const token = authorization.slice(7); //Bearer $$$$$
+    console.log(token);
+    jwt.verify(token, process.env.SECRET_JWT, (err, decoded) => {
+      if (err) {
+        res.status(401).send({ message: "Invalid token" });
+      } else {
+        req.user = decoded;
+        next();
+      }
+    });
+  } else {
+    res.status(401).send({ message: "No token" });
+  }
+};
+module.exports = { genToken, isAuthorized };

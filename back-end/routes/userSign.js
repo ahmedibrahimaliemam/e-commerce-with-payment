@@ -8,7 +8,6 @@ routes.post(
   "/signIn",
   expressAsyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
-    console.log(email, password);
     try {
       const found = await userModel.findOne({ email });
       if (found && bcrypt.compareSync(password, found.password)) {

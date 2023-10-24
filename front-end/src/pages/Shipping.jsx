@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { svaUserInfo } from "../rtk/slices/userInfoSlice";
 import PaymentLine from "../smComponent/paymentLine";
+import Swal from "sweetalert2";
 const Shipping = () => {
   const userInfoState = useSelector((state) => state.userInfo);
   const userState = useSelector((state) => state.users);
@@ -17,15 +18,24 @@ const Shipping = () => {
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      svaUserInfo({
-        name,
-        city,
-        address,
-        postalNum,
-        country,
-      })
-    );
+    if (name && city && address && postalNum && country) {
+      dispatch(
+        svaUserInfo({
+          name,
+          city,
+          address,
+          postalNum,
+          country,
+        })
+      );
+      navigate("/payment");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "you must fill all data!",
+      });
+    }
   };
   useEffect(() => {
     if (!userState.name) {

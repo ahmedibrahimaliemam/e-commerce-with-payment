@@ -10,6 +10,7 @@ import {
 const ProductsInCart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
+  const userState = useSelector((state) => state.users);
   //to manage checkout handler
   const navigate = useNavigate();
   const quantity = products.reduce((acc, product) => acc + product.quantity, 0);
@@ -68,7 +69,14 @@ const ProductsInCart = () => {
             Subtotal({quantity}-items):${total}
           </h1>
           <hr />
-          <button onClick={()=>navigate("/signin?redirect=/shipping")}>proceed to checkout</button>
+          <button
+            onClick={() =>
+              userState.name
+                ? navigate("/shipping")
+                : navigate("/signin?redirect=/shipping")
+            }>
+            proceed to checkout
+          </button>
         </div>
       </div>
     </div>

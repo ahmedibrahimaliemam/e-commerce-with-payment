@@ -4,11 +4,46 @@
   display: block;
   background-color: orange;
 }
-@media screen and (max-width:768px) {
-.horizontal-1 {
-  width: 76%;
-  height: 100%;
+.payment-container {
+  margin-left: auto;
+  text-align: center;
+  margin-top: 4rem;
+  position: relative;
+  height: 1000px;
+}
+.payment-container h1 {
+  font-size:xx-large
+}
+.payment-container input {
+  position: absolute;
+  left: 39%;
   display: block;
-  background-color: orange;
+  top: 40%;
+}
+.payment-container label {
+  display: block;
+  position: relative;
+  left: 22.5rem;
+  padding: 0.5rem 1rem;
+  width: 30%;
+}
+.active-1{
+  color: orange;
+}
+@media screen and (max-width: 768px) {
+  .horizontal-1 {
+    width: 76%;
+    height: 100%;
+    display: block;
+    background-color: orange;
+  }
+  .payment-container input {
+  left: 10%;
+  top: 37%;
+}
+.payment-container label {
+
+  left: 15%;
+  font-size: large;
 }
 }

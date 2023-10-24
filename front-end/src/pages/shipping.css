@@ -18,6 +18,9 @@
   display: block;
   background-color: orange;
 }
+.btn-dodger:hover{
+  background-color: dodgerblue;
+}
 @media screen and (max-width:768px) {
     .shipping-ele {
   display: flex;

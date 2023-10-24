@@ -1,0 +1,124 @@
+.place-order {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 80%;
+  gap: 1rem;
+}
+.place-order .place-order-div1 {
+  width: 70%;
+}
+.place-order div {
+  padding: 1rem;
+  border: 1px solid #e8e8e8;
+}
+.place-order .shipping-content p {
+  font-weight: bolder;
+}
+.place-order .shipping-content span {
+  font-weight: 500;
+  word-spacing: 0.3rem;
+}
+.place-order a {
+  color: dodgerblue;
+  text-decoration: underline;
+  display: block;
+  padding-top: 1rem;
+}
+.product-item {
+  display: flex;
+  gap: 7rem;
+}
+.product-item img {
+  width: 3rem;
+  height: 3rem;
+}
+.product-item p {
+  margin-top: 1rem;
+}
+.place-order .place-order-div2 {
+  width: 25%;
+  margin-top: 1rem;
+  max-height: 25rem;
+  border: 1px solid #e8e8e8;
+}
+.paypal{
+  width: 100%;
+  height: 8rem;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.paypal div{
+  display: none;
+}
+
+.place-order-div2 span {
+  display: block;
+  padding: 0.3rem;
+}
+.place-order-div2 span:nth-child(2) {
+  word-spacing: 5rem;
+}
+.place-order-div2 span:nth-child(4) {
+  word-spacing: 3.5rem;
+}
+.place-order-div2 span:nth-child(6) {
+  word-spacing: 6rem;
+}
+.place-order-div2 span:nth-child(8) {
+  word-spacing: 3rem;
+}
+.btn-center {
+  margin: 1rem auto;
+  display: block;
+}
+.place-order-div2 h1 {
+  font-weight: bolder;
+}
+.active-2 {
+  color: orange;
+}
+.line {
+  width: 100%;
+  background-color: orange;
+}
+.horizontal-100{
+     width: 100%;
+  height: 100%;
+  display: block;
+  background-color: orange;
+}
+@media screen and (max-width: 768px) {
+  .place-order {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+  .place-order .place-order-div1 {
+    width: 100%;
+  }
+  .product-item {
+    gap: 1rem;
+  }
+  .place-order .place-order-div2 {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .place-order-div2 h1 {
+    text-align: center;
+  }
+  .place-order-div2 span:nth-child(2) {
+    word-spacing: 10rem;
+  }
+  .place-order-div2 span:nth-child(4) {
+    word-spacing: 8.5rem;
+  }
+  .place-order-div2 span:nth-child(6) {
+    word-spacing: 11rem;
+  }
+  .place-order-div2 span:nth-child(8) {
+    word-spacing: 8rem;
+  }
+}

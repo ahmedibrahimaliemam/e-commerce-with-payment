@@ -6,11 +6,13 @@ import axios from "axios";
 import Spinner from "../smComponent/Spinner";
 import Products from "./products";
 import { Helmet } from "react-helmet-async";
+import { useDispatch } from "react-redux";
 
 const Main = () => {
   const [products, setProducts] = useState([]);
   const [Loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
   const getAllProducts = async () => {
     setLoading(true);
     await axios
@@ -20,7 +22,6 @@ const Main = () => {
         setProducts(res.data.data);
       })
       .catch((err) => {
-      
         setLoading(false);
         setError(true);
       });

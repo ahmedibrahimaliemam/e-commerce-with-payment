@@ -14,8 +14,13 @@ const userSlice = createSlice({
     //clear cart to make it ready to new user
     localStorage.clear() ;
       return {} ;
+    },
+    updateUser:(state,action)=>{
+      //update local storage
+      localStorage.setItem("user",JSON.stringify(action.payload)) ;
+      return action.payload ;
     }
   },
 });
-export const { addUser ,removeUser } = userSlice.actions;
+export const { addUser ,removeUser,updateUser } = userSlice.actions;
 export default userSlice.reducer;

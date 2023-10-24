@@ -1,9 +1,9 @@
 const userModel = require("../model/userModel");
 const bcrypt = require("bcryptjs");
+const { genToken } = require("../utility");
 //add new user
 const addUser = async (req, res, next) => {
   const { name, email, password } = req.body;
-  console.log(name, email, password);
   try {
     const findUser = await userModel.findOne({ email });
     console.log(findUser);
@@ -50,4 +50,31 @@ const getUser = async (req, res, next) => {
     res.status(500).status({ message: "internal server error" });
   }
 };
-module.exports = { getAllUser, addUser, getUser };
+const updateUser = async (req, res, next) => {
+  const { email } = req.params;
+  const { name, newEmail, password } = req.body;
+  const newPassword = bcrypt.hashSync(password, 8);
+  try {
+    const thisUser = await userModel.findOne({ email });
+    if (thisUser) {
+      await userModel.updateOne(
+        { email },
+        { $set: { name, email: newEmail, password: newPassword } }
+      );
+      const data = await userModel.findOne({ email: newEmail });
+      console.log(data);
+      res.status(201).send({
+        _id: data._id,
+        name: data.name,
+        email: data.email,
+        isAdmin: data.isAdmin,
+        token: genToken(data),
+      });
+    } else {
+      res.status(404).send({ message: "user not found" });
+    }
+  } catch (err) {
+    res.status(500).send({ message: "internal server error!" });
+  }
+};
+module.exports = { getAllUser, addUser, getUser, updateUser };

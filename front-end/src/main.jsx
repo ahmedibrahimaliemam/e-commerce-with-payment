@@ -6,13 +6,16 @@ import "./App.css";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import store from "./rtk/store.jsx";
+import {PayPalScriptProvider} from "@paypal/react-paypal-js"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <HelmetProvider>
         <Provider store={store}>
-          <App />
+          <PayPalScriptProvider deferLoading={true}>
+            <App />
+          </PayPalScriptProvider>
         </Provider>
       </HelmetProvider>
     </BrowserRouter>

@@ -1,41 +1,69 @@
 import axios from "axios";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import { addUser } from "../rtk/slices/usersSlice";
-const SignUp = () => {
-  const { search } = useLocation();
-  const redirect = new URLSearchParams(search).get("redirect");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { updateUser } from "../rtk/slices/usersSlice";
+
+const ProfileScreen = () => {
+  const userState = useSelector((state) => state.users);
+  const [name, setName] = useState(userState.name || "");
+  const [email, setEmail] = useState(userState.email || "");
   const [password, setPassword] = useState("");
   const [conPassword, setConPassword] = useState("");
-  const submitHandler = async (e) => {
+  const dispatch =useDispatch() ;
+  const submitHandler = (e) => {
     e.preventDefault();
-    if (password === conPassword) {
-      await axios
-        .post("http://localhost:5000/users/api", {
+    if (password != conPassword) {
+      toast.error("password error", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      axios
+        .patch(`http://localhost:5000/users/api/${userState.email}`, {
           name,
-          email,
+          newEmail: email,
           password,
         })
         .then((res) => {
-          console.log(res);
-          dispatch(addUser({ name, email }));
-          navigate("/signin");
+          console.log(res.data);
+          toast.success("data updated successfully", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          dispatch(updateUser({name:res.data.name , email:res.data.email , token:res.data.token}))
         })
-        .catch((err) => console.log(err));
-    } else {
-      console.log(`it does not match`);
+        .catch((err) => {
+          toast.error("error to update data", {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        });
     }
   };
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <Helmet>
-        <title>Sign up</title>
+        <title>Profile</title>
       </Helmet>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
@@ -44,7 +72,7 @@ const SignUp = () => {
           alt="Your Company"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Sign Up
+          User Profile
         </h2>
       </div>
 
@@ -61,6 +89,7 @@ const SignUp = () => {
                 id="name"
                 name="name"
                 type="text"
+                defaultValue={name}
                 autoComplete="name"
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -79,6 +108,7 @@ const SignUp = () => {
             <div className="mt-2">
               <input
                 id="email"
+                defaultValue={email}
                 name="email"
                 type="email"
                 autoComplete="email"
@@ -140,12 +170,24 @@ const SignUp = () => {
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-yellow-300 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              Sign Up
+              Update
             </button>
           </div>
         </form>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
-export default SignUp;
+export default ProfileScreen;

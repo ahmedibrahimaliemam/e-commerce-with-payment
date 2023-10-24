@@ -1,0 +1,31 @@
+.side-bar{
+    background-color: #2b2d42;
+    height: 200vh ;
+    width: 15%;
+    position: absolute;
+    left: -12rem;
+    transition: 0.8s;
+    -webkit-transition: 0.8s;
+    -moz-transition: 0.8s;
+    -ms-transition: 0.8s;
+    -o-transition: 0.8s;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.side-bar a{
+    margin-bottom: 1rem;
+}
+.side-bar a:hover{
+    background-color: hwb(210 15% 0%);
+}
+@media screen and (max-width:768px){
+
+    .side-bar{
+    background-color: rgba(0.5, 0.5, 0.5, 0.7);
+    width: 100%;
+    left: -27rem;
+    height: 100vh;
+
+}
+}
